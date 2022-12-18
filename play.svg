@@ -1,0 +1,35 @@
+<svg
+   viewBox="0 0 13.229167 13.229167"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   sodipodi:docname="play.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       sodipodi:type="star"
+       style="stroke-width:1.5875;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       id="path1012"
+       inkscape:flatsided="true"
+       sodipodi:sides="3"
+       sodipodi:cx="2.0548041"
+       sodipodi:cy="3.0706623"
+       sodipodi:r1="5.5303216"
+       sodipodi:r2="2.03918"
+       sodipodi:arg1="0.52359878"
+       sodipodi:arg2="1.5707963"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 6.8442031,5.8358231 -9.578798,-10e-8 4.789399,-8.2954823 z"
+       transform="rotate(90,1.8714628,6.431242)"
+       inkscape:transform-center-x="-1.01959" />
+  </g>
+</svg>
