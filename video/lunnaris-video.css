@@ -20,6 +20,7 @@
     align-items: center;
     color: white;
     overflow: hidden;
+    background-color: #000;
 }
 
 .videoplayer video {
