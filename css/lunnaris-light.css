@@ -1,0 +1,27 @@
+:root {
+    --color-primary: #2384c4;
+    --color-secondary: #73bbeb;
+    --base-text-color: rgb(0, 0, 0);
+    --base-color: #ffffff;
+    --base-soft-contrast: #f1f1f1;
+    --contrast-color: rgb(155, 155, 155);
+}
+
+/*---Background Colors---*/
+.bg-appearance {background-color: var(--base-color)}
+.bg-appearance-contrast {background-color: var(--contrast-color)}
+.bg-appearance-soft-contrast {background-color: var(--base-soft-contrast)}
+.bg-primary {background-color: var(--color-primary)}
+.bg-secondary {background-color: var(--color-secondary)}
+
+/*---Text---*/
+.txt-color-base {color: var(--base-text-color)}
+.txt-color-alt {color: var(--base-color)}
+
+/*---Border---*/
+.br-color-primary {border-color: var(--color-primary)}
+.br-color-secondary {border-color: var(--color-secondary)}
+.br-color-accent {border-color: var(--contrast-color)}
+
+/*---focused---*/
+.focusable:focus {background-color: var(--color-secondary); outline: none; border-color: var(--color-primary);}

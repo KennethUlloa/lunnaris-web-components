@@ -359,17 +359,3 @@ class VideoPlayer {
         _temp.appendChild(this._videoPlayer);
     }
 }
-/*
-var video = new VideoPlayer(document.getElementById('video'));
-video.render('player');
-
-var titleBanner = createElement('div', 'titleBanner');
-var title = createElement('h1', 'title');
-title.textContent = 'Aquaman';
-var message = createElement('h2', 'message');
-message.textContent = 'Estás viendo';
-
-titleBanner.appendChild(message);
-titleBanner.appendChild(title);
-
-video.setTopPanel(titleBanner, 'element');*/

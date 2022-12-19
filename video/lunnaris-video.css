@@ -117,6 +117,7 @@
     transform: translateX(-50%);
     left: calc(var(--video-preview) * 100%);
     z-index: 11;
+    font-size: 18px;
 }
 
 .videoplayer .controlsPane .timelineContainer .timePreview.leftClip {
@@ -137,6 +138,10 @@
     display: flex;
     justify-content: space-between;
     padding: 5px 0;
+}
+
+.videoplayer .controlsPane .time .duration,
+.videoplayer .controlsPane .time .currentTime {
     font-size: 18px;
 }
 
