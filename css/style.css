@@ -1,23 +1,69 @@
+:root {
+    --color-primary: #2384c4;
+    --color-secondary: #73bbeb;
+    --base-text-color: rgb(0, 0, 0);
+    --base-color: #c9d7dd;
+    --base-soft-contrast: #f1f1f1;
+    --contrast-color: #9b9b9b;
+}
+
 * {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    
 }
 
 body {
     background-color: var(--base-color);
+    font-size: 24px;
 }
+
+header {
+    color: white;
+    background-color: #2384c4;
+    text-align: center;
+    padding: 20px;
+    font-size: 2.1rem;
+}
+
+#content {display: flex; justify-content: center;}
 
 .element {
     width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid var(--contrast-color);
+    background-color: white;
+    margin: 10px;
+    border-radius: 10px;
+    overflow: hidden;
 }
+
+.element > * {margin-bottom: 10px;}
+
+.el-title {background-color: var(--base-soft-contrast); text-align: center;}
+
+.element-content {
+    display: flex;
+    flex-direction: column;
+    align-items : center;
+    padding: 0 10px; 
+    text-align: center;
+}
+.element-content p {text-align: justify;}
+
+.element-content h3 {text-align: center;}
+.element-content p {font-size: 1rem;}
+.element-content > * {margin-bottom: 10px;}
+.element-content table {width: fit-content;}
 
 table {
     border-spacing: 0;
-    border-radius: 5px;
+    border-radius: 10px;
     border: 1px solid var(--contrast-color);
     padding: 0px;
+    overflow: hidden;
 }
 
 table td {padding: 10px;}
@@ -48,12 +94,25 @@ table td {
     border: 1px solid var(--contrast-color);
 }
 
-.p-1 {text-align: justify; font-size: 18px; padding: 10px;}
+.code-view {
+    display: flex;
+    min-width: none;
+}
+
+.code-view td * {
+    display: inline; 
+    word-wrap: break-word; 
+    overflow-wrap: anywhere
+}
+
+.code-view td {width: 100%;}
 
 .code-view * {
     font-family: 'Courier New', Courier, monospace;
     background-color: #161b22;
     color: #c6cdd5;
+    width: fit-content;
+    border: none;
 }
 
 .code-view .keyword {color: #cea5fb;font-weight: bold;}
@@ -69,3 +128,42 @@ table td {
 .code-view .method {color: #77bdfb}
 
 .code-view .comment {color: #89929b;}
+
+#test {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 50px;
+    background-color: black;
+}
+
+#test div {
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 50%;
+    margin: 5px;
+    animation: grow 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+}
+
+#test div:nth-child(1) {
+    animation-delay: -0.24s;
+}
+
+#test div:nth-child(2) {
+    animation-delay: -0.12s;
+}
+
+#test div:nth-child(3) {
+    animation-delay: 0;
+}
+
+@keyframes grow {
+    0% {
+        transform: scale(0.1);
+    }
+    50%, 100% {
+        transform: scale(1);
+    }
+}

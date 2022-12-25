@@ -5,112 +5,115 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/lunnaris-light.css">
-    <link rel="stylesheet" href="css/lunnaris-lib.css">
-    <link rel="stylesheet" href="https://kennethulloa.github.io/lunnaris-web-components/video/lunnaris-video.css">
-    <script src="https://kennethulloa.github.io/lunnaris-web-components/video/lunnaris-video.js"></script>
+    <link rel="stylesheet" href="video/lunnaris-video.css">
+    <script src="video/lunnaris-video.js"></script>
     <title>Document</title>
 </head>
 <body>
-    <header class="bg-primary pd-40 txt-center txt-color-alt">
+    <header>
         Lunnaris Web Components 
     </header>
-    <div id="content" class="txt-center">
-        <div class="element d-inline-block br-r-10 br-color-accent br-1-solid mg-height-10">
-            <h2 class="bg-appearance-soft-contrast br-r-top-10 pd-10">VideoPlayer</h2>
-            <p class="txt-justify pd-10 f-size-18">
-                Skin for the HTML5 video tag. Internal behaviour depends only of browser implementation. It's intended to be used as
-                a visual element rather than extending the capability of the video element. Basic functionalities have been overriden so
-                the internal elements can trigger the corresponding events for each action.
-            </p>
-            <table class="d-inline-block mg-height-10">
-                <tr>
-                    <th>Class name</th><td>VideoPlayer</td>
-                </tr>
-                <tr>
-                    <th>Constructor parameters</th><td class="argument">video: <span class="arg-type">video element | url</span>, fromUrl: <span class="arg-type">bool</span></td>
-                </tr>
-                <tr>
-                    <th>Render method</th><td>Id of root element</td>
-                </tr>
-            </table>
-            <h3>Features</h3>
-            <p class="p-1">The element supports the following functionalities</p>
-            <table class="d-inline-block">
-                <tr>
-                    <td>Change current time</td>
-                </tr>
-                <tr>
-                    <td>Change current volume</td>
-                </tr>
-                <tr>
-                    <td>Play/Pause video</td>
-                </tr>
-                <tr>
-                    <td>Fullscreen toggle</td>
-                </tr>
-                <tr>
-                    <td>Time preview (mouse over the timeline)</td>
-                </tr>
-                <tr>
-                    <td>Mute/Unmute audio</td>
-                </tr>
-            </table>
-
-            <h3>How to use</h3>
-            <ol class="mg-line-50">
-                <li>
-                    <p class="p-1">In order to use this element, you need to add the following tags to your html head tag</p>
-                    <table class="code-view d-inline-block br-color-accent br-1-solid mg-10 mg-line-50">
-                        <tr>
-                            <td>
-                                &lt;<span class="primitive">link</span> <span class="symbol">rel</span>=<span class="string">"stylesheet"</span> <span class="symbol">href</span>=<span class="string">"https://kennethulloa.github.io/lunnaris-web-components/video/lunnaris-video.css"</span>&gt;
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
+    <div id="content">
+        <div class="element">
+            <h2 class="el-title">VideoPlayer</h2>
+            <div class="element-content">
+                <p>
+                    Skin for the HTML5 video tag. Internal behaviour depends only of browser implementation. It's intended to be used as
+                    a visual element rather than extending the capability of the video element. Basic functionalities have been overriden so
+                    the internal elements can trigger the corresponding events for each action.
+                </p>
+                <table class="">
+                    <tr>
+                        <th>Class name</th><td>VideoPlayer</td>
+                    </tr>
+                    <tr>
+                        <th>Constructor parameters</th><td class="argument">video: <span class="arg-type">video element | url</span>, fromUrl: <span class="arg-type">bool</span></td>
+                    </tr>
+                    <tr>
+                        <th>Render method</th><td>Id of root element</td>
+                    </tr>
+                </table>
+                <h3>Features</h3>
+                <p class="">The element supports the following functionalities</p>
+                <table class="" >
+                    <tr>
+                        <td>Change current time</td>
+                    </tr>
+                    <tr>
+                        <td>Change current volume</td>
+                    </tr>
+                    <tr>
+                        <td>Play/Pause video</td>
+                    </tr>
+                    <tr>
+                        <td>Fullscreen toggle</td>
+                    </tr>
+                    <tr>
+                        <td>Time preview (mouse over the timeline)</td>
+                    </tr>
+                    <tr>
+                        <td>Mute/Unmute audio</td>
+                    </tr>
+                    <tr>
+                        <td>Show loading animation</td>
+                    </tr>
+                    <tr>
+                        <td>Show current time and full duration</td>
+                    </tr>
+                </table>
+    
+                <h3>How to use</h3>
+                <p class="p-1">In order to use this element, you need to add the following tags to your html head tag</p>
+                <table class="code-view">
+                    <tr>
+                        <td>
+                            &lt;<span class="primitive">link</span> <span class="symbol">rel</span>=<span class="string">"stylesheet"</span> <span class="symbol">href</span>=<span class="string">"https://kennethulloa.github.io/lunnaris-web-components/video/lunnaris-video.css"</span>&gt;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                                 &lt;<span class="primitive">script</span> <span class="symbol">src</span>=<span class="string">"https://kennethulloa.github.io/lunnaris-web-components/video/lunnaris-video.js"</span>&gt;&lt;/<span class="primitive">script</span>&gt;
                             </td>
-                        </tr> 
-                    </table>
-                </li>
-                <li>
-                    <p class="p-1">In your javascript code you can call VideoPlayer class passing an URL as parameter</p>
-                    <table class="code-view d-inline-block br-color-accent br-1-solid mg-10 mg-line-50">
-                        <tr>
-                            <td>
-                                <span class="keyword">var</span> <span class="variable">videoplayer</span> <span class="symbol">=</span> <span class="keyword">new</span> <span class="element">VideoPlayer</span>(<span class="string">'some url'</span>, <span class="primitive">true</span>) <span class="comment">/*second argument is true since we are passing an url*/</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="variable">videoplayer</span>.<span class="span method">render</span>(<span class="string">'parent element ID'</span>); <span class="comment">/*You must pass the id of the parent element*/</span>
-                            </td>
-                        </tr> 
-                    </table>
-                    <p class="p-1">Or passing a video element reference (created or queried)</p>
-                    <table class="code-view d-inline-block br-color-accent br-1-solid mg-10 mg-line-50">
-                        <tr>
-                            <td>
-                                <span class="keyword">var</span> <span class="variable">videoplayer</span> <span class="symbol">=</span> <span class="keyword">new</span> <span class="element">VideoPlayer</span>(<span>video_element_reference</span>, <span class="primitive">false</span>) <span class="comment">/*second argument is false (by default) since we are passing an HTMLElement*/</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="variable">videoplayer</span>.<span class="span method">render</span>(<span class="string">'parent element ID'</span>); <span class="comment">/*You must pass the id of the parent element*/</span>
-                            </td>
-                        </tr> 
-                    </table>
-                </li>
-            </ol>
-            <h3>Demo</h3>
-            <div id="root" class="d-inline-block" style="width: 600px;"></div>
+                    </tr> 
+                </table>
+                <p class="p-1">In your javascript code you can call VideoPlayer class passing an URL as parameter</p>
+                <table class="code-view">
+                    <tr>
+                        <td>
+                            <span class="keyword">var</span> <span class="variable">videoplayer</span> <span class="symbol">=</span> <span class="keyword">new</span> <span class="element">VideoPlayer</span>(<span class="string">'some url'</span>, <span class="primitive">true</span>) <span class="comment">/*second argument is true since we are passing an url*/</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="variable">videoplayer</span>.<span class="span method">render</span>(<span class="string">'parent element ID'</span>); <span class="comment">/*You must pass the id of the parent element*/</span>
+                        </td>
+                    </tr> 
+                </table>
+                <p class="p-1">Or passing a video element reference (created or queried)</p>
+                <table class="code-view">
+                    <tr>
+                        <td>
+                            <span class="keyword">var</span> <span class="variable">videoplayer</span> <span class="symbol">=</span> <span class="keyword">new</span> <span class="element">VideoPlayer</span>(<span>element</span>, <span class="primitive">false</span>) <span class="comment">/*second argument is false (by default) since we are passing an HTMLElement*/</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="variable">videoplayer</span>.<span class="span method">render</span>(<span class="string">'parent element ID'</span>); <span class="comment">/*You must pass the id of the parent element*/</span>
+                        </td>
+                    </tr> 
+                </table>
+                <h3>Demo</h3>
+                <p>Default</p>
+                <div style="width: min(600px, 100%);"> <video src="video/Demo.mp4" width="100%" controls></video></div>
+                <p>Lunnaris library</p>
+                <div id="video-space" class="d-inline-block" style="width: min(600px, 100%);"></div>
+            </div>
         </div>
     </div>
+    
     <script>
         var videoplayer = new VideoPlayer('video/Demo.mp4', true) /*second argument is true since we are passing an url*/
-        videoplayer.render('root'); /*You must pass the id of the parent element*/
+        videoplayer.render('video-space'); /*You must pass the id of the parent element*/
     </script>
 </body>
 </html>
-

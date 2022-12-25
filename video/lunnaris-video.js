@@ -145,6 +145,9 @@ class VideoPlayer {
         this._volume = createIconButton(volumeIcon, 'button');
         this._volumebar = new Slidebar(0.5, 0, 1);
         var loading = createElement('div', 'loadingItem');
+        loading.appendChild(createElement('div'));
+        loading.appendChild(createElement('div'));
+        loading.appendChild(createElement('div'));
         this._topPanel = createElement('div', 'panel top');
         this.timePreview = createElement('div', 'timePreview');
 
@@ -171,9 +174,12 @@ class VideoPlayer {
         _buttons.appendChild(_panel1);
         _panel1.appendChild(this._play);
         _panel1.appendChild(this._pause);
-        _panel1.appendChild(this._mute);
-        _panel1.appendChild(this._volume);
-        _panel1.appendChild(this._volumebar.root);
+        var volPane = createElement('div', 'vol-pane');
+
+        volPane.appendChild(this._mute);
+        volPane.appendChild(this._volume);
+        volPane.appendChild(this._volumebar.root);
+        _panel1.appendChild(volPane);
         //Buttons
         _buttons.appendChild(_panel2);
         _panel2.appendChild(this._expand);
@@ -343,8 +349,10 @@ class VideoPlayer {
     }
 
     hideControls() {
+        if (document.fullscreenElement === this._videoPlayer){
+            this._videoPlayer.style.cursor = 'none';
+        }
         this.controlsPane.classList.toggle('hidden', true);
-        this._videoPlayer.style.cursor = 'none';
         this._topPanel.classList.toggle('hidden', true);
     }
 
