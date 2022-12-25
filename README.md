@@ -1,2 +1,2 @@
-# lunnaris-web-components.github.io
+# Lunnaris Web Components
 Library for components
