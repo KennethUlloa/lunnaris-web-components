@@ -270,29 +270,6 @@
     opacity: 0;
 }
 
-@keyframes loading {
-    0% {
-        background-color: yellow;
-        --s1: 1.5;
-        --s2: 1;
-        --s3: 1;
-    }
-
-    50% {
-        background-color: blue;
-        --s1: 1;
-        --s2: 1.5;
-        --s3: 1;
-    }
-
-    100% {
-        --s1: 1;
-        --s2: 1;
-        --s3: 1.5;
-    }
-
-}
-
 .videoplayer .vol-pane {
     display: flex;
     align-items: center;
@@ -307,6 +284,33 @@
 .videoplayer .vol-pane:hover .slidebar {
     opacity: 1;
     width: 100px;
+}
+
+.videoplayer .floatingPlay {
+    width: max(100px, 20%);
+    height: max(100px, 20%);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    background-color: transparent;
+    transform: translate(-50%, -50%);
+    border: none;
+    z-index: 100;
+    cursor: pointer;
+}
+
+.videoplayer .floatingPlay.hidden {
+    display: none;
+}
+
+.videoplayer .floatingPlay svg {
+    width: 100%;
+    height: 100%;
+}
+
+.videoplayer .floatingPlay svg g {
+    fill: white;
+    stroke: white;
 }
 
 .slidebar {

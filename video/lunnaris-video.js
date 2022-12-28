@@ -8,6 +8,17 @@ const decimalFormatter = new Intl.NumberFormat(undefined, {
     minimumIntegerDigits: 2
 });
 
+function loadIcons(name) {
+    var _content = createElement('div');
+    fetch(`video/${name}`).
+    then(response => response.text())
+    .then(icon => {
+        console.log(icon);
+        _content.innerHTML = icon;
+    }).catch(reason => console.log('error'));
+    return _content;
+}
+
 function createElement(tag, className=null, type=null) {
     var element = document.createElement(tag);
     if(className !== null){
@@ -145,16 +156,19 @@ class VideoPlayer {
         this._volume = createIconButton(volumeIcon, 'button');
         this._volumebar = new Slidebar(0.5, 0, 1);
         var loading = createElement('div', 'loadingItem');
+        this.floatinPlay = createIconButton(playIcon, 'floatingPlay');
         loading.appendChild(createElement('div'));
         loading.appendChild(createElement('div'));
         loading.appendChild(createElement('div'));
         this._topPanel = createElement('div', 'panel top');
         this.timePreview = createElement('div', 'timePreview');
+        this.isFocused = false;
 
         //Structure
         this._videoPlayer.appendChild(this._video);
         this._videoPlayer.appendChild(this.controlsPane);
         this._videoPlayer.appendChild(loading);
+        this._videoPlayer.appendChild(this.floatinPlay); //Floating button Play
         this._videoPlayer.appendChild(this._topPanel);
 
         //controlsPane children
@@ -189,6 +203,7 @@ class VideoPlayer {
         //events
         /* Play-pause logic */
         this._play.addEventListener('click', ()=> {this.togglePlay();})
+        this.floatinPlay.addEventListener('click', () => {this.togglePlay();});
 
         this._pause.addEventListener('click', ()=> {this.togglePlay();})
 
@@ -203,11 +218,20 @@ class VideoPlayer {
         /* Metadata ready */
         this._video.addEventListener('loadedmetadata', () => {this.loadVideoTime();});
         this._video.addEventListener('durationchange', () => {this.loadVideoTime();});
-
         this._video.addEventListener('canplay', () => {this.loadVideoTime();
             loading.classList.toggle('hidden', true); //Loading logic
         });
 
+        /* End of video */
+        this._video.addEventListener('ended', () => {
+            this.floatinPlay.classList.toggle('hidden', false); 
+            this._play.classList.toggle('hidden', false);
+            this._pause.classList.toggle('hidden', true);
+        });
+        
+        this._video.addEventListener('keydown', (e)=> {
+            console.log(e.key);
+        })
         /* Loading animation */
         this._video.addEventListener('loadstart', ()=>{loading.classList.toggle('hidden', true);})
 
@@ -236,7 +260,6 @@ class VideoPlayer {
 
         this._volumebar.onchange = () => {
             this._video.volume = this._volumebar.value;
-            console.log(this._video.volume);
         }
 
         /* Time preview */
@@ -250,6 +273,32 @@ class VideoPlayer {
         this._volumebar.value = 0.5;
         loading.classList.toggle('hidden', true);
         this.timePreview.textContent = "-:--";
+        this.controlsPane.classList.toggle('hidden', true);
+        this._videoPlayer.addEventListener('mouseenter', () => {this.isFocused = true});
+        this._videoPlayer.addEventListener('mouseleave', () => {this.isFocused = false});
+        document.addEventListener('keydown', (e)=> {
+            if(this.isFocused){
+                e.preventDefault();
+                if(e.key === 'ArrowLeft'){
+                    this.skipBackward();
+                }else if(e.key === 'ArrowRight'){
+                    this.skipForward();
+                }else if(e.key === ' '){
+                    this.togglePlay();
+                }else if(e.key === 'm'){
+                    this.toggleMute();
+                }else if(e.key === 'ArrowUp'){
+                    this.volume += 0.1; 
+                }else if(e.key === 'ArrowDown'){
+                    this.volume -= 0.1;
+                }else if(e.key === 'f'){
+                    this.toggleFullscreen();
+                }
+            }
+        })
+
+        this.skipValue = 0.1;
+
     }
 
     setTopPanel(content, type='string') {
@@ -276,10 +325,12 @@ class VideoPlayer {
     togglePlay(){
         if(this._video.paused){
             this._video.play();
+            this.floatinPlay.classList.toggle('hidden', true);
             this._pause.classList.toggle('hidden', false);
             this._play.classList.toggle('hidden', true);
         }else{
             this._video.pause();
+            this.floatinPlay.classList.toggle('hidden', false);
             this._pause.classList.toggle('hidden', true);
             this._play.classList.toggle('hidden', false);
         }
@@ -362,8 +413,44 @@ class VideoPlayer {
         this._topPanel.classList.toggle('hidden', false);
     }
 
+    skipForward() {
+        if(Number.isNaN(this._video.duration)){return;}
+        this._video.currentTime += this._skipValue * this._video.duration;
+    }
+
+    skipBackward() {
+        if(Number.isNaN(this._video.duration)){return;}
+        this._video.currentTime -= this._skipValue * this._video.duration;
+    }
+
+    set skipValue(value) {
+        this._skipValue = value;
+    }
+
+    get skipValue() {
+        return this._skipValue;
+    }
+
+    set volume(value) {
+
+        this._volumebar.value = Math.max(0, Math.min(1, value));
+        this._video.volume = Math.max(0, Math.min(1, value));
+    }
+
+    get volume() {
+        return this._video.volume;
+    }
+
     render(element) {
         var _temp = document.getElementById(element);
         _temp.appendChild(this._videoPlayer);
+    }
+
+    get root() {
+        return this._videoPlayer;
+    }
+
+    get videoElement() {
+        return this._video;
     }
 }

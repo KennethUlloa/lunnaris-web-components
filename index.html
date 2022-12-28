@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="video/lunnaris-video.css">
     <script src="video/lunnaris-video.js"></script>
+    <script src="touch/touch.js"></script>
     <title>Lunnaris Web Components</title>
 </head>
 <body>
@@ -14,8 +15,8 @@
         Lunnaris Web Components 
     </header>
     <div id="content">
-        <div class="element">
-            <h2 class="el-title">VideoPlayer</h2>
+        <div class="c-element">
+            <h2 class="el-title"><button>+</button> VideoPlayer</h2>
             <div class="element-content">
                 <p>
                     Skin for the HTML5 video tag. Internal behaviour depends only of browser implementation. It's intended to be used as
@@ -27,7 +28,8 @@
                         <th>Class name</th><td>VideoPlayer</td>
                     </tr>
                     <tr>
-                        <th>Constructor parameters</th><td class="argument">video: <span class="arg-type">video element | url</span>, fromUrl: <span class="arg-type">bool</span></td>
+                        <th>Constructor parameters</th><td class="argument" style="display: flex; flex-wrap: wrap; line-height: 32px;"><div style="margin-right: 5px;">video: <span class="arg-type">video element | url</span></div> 
+                            <div>fromUrl: <span class="arg-type">bool</span></div></td>
                     </tr>
                     <tr>
                         <th>Render method</th><td>Id of root element</td>
@@ -109,11 +111,150 @@
                 <div id="video-space" class="d-inline-block" style="width: min(600px, 100%);"></div>
             </div>
         </div>
+        <div class="c-element">
+            <h2 class="el-title"><button>+</button>TouchHandler</h2>
+            <div class="element-content">
+                <p>
+                    Javascript class for handling horizontal and vertical swap. It captures the start and the end (or cancelation) of a touch event then it computes
+                    the percentage of movement relative to selected component width and height. Its intended to be used handling either vertical or horizontal swipe
+                    at the time. The defined actions trigger only when the touch event is ended or either canceled.
+                </p>
+                <table class="">
+                    <tr>
+                        <th>Class name</th><td>TouchHandler</td>
+                    </tr>
+                    <tr>
+                        <th>Constructor parameters</th>
+                        <td class="argument">
+                            <div>element: <span class="arg-type">HTMLElement</span></div>
+                            <div>vUmbral: <span class="arg-type">Number</span></div>
+                            <div>hUmbral: <span class="arg-type">Number</span></div>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Methods</th>
+                        <td class="argument">
+                            <div>horizontalAction <span class="arg-type">Function</span></div>
+                            <div>verticalAction <span class="arg-type">Function</span> </div>
+                        </td>
+                    </tr>
+                </table>
+                <h3>Features</h3>
+                <p>The handler allows you to retrieve the next data</p>
+                <p><b>Consideration:</b> Down-Up swipe has negative sign, Right-Left has negative sign.</p>
+                <table>
+                    <tr>
+                        <td>
+                            <div class="argument">startPoint: <span class="arg-type">Array[2]</span>, 2-array representing X and Y</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="argument">
+                                endPoint: <span class="arg-type">Array[2]</span>, 2-array representing X and Y
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="argument">horizontal: <span class="arg-type">Number</span>, 0-1 float number representing horizontal swipe percentage over the element</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><div class="argument">
+                            vertical: <span class="arg-type">Number</span>, 0-1 float number representing vertical swipe percentage over the element
+                        </div></td>
+                    </tr>
+                </table>
+                <h3>How to use</h3>
+                <p>In order to use this class you must add the next tag to your head tag</p> 
+                <table class="code-view">
+                    <tr>
+                        <td>
+                            &lt;<span class="primitive">script</span> <span class="symbol">src</span>=<span class="string">"https://kennethulloa.github.io/lunnaris-web-components/touch/touch.js"</span>&gt;&lt;/<span class="primitive">script</span>&gt;
+                        </td>
+                    </tr>
+                </table>
+                <p>In your javascript code</p>
+                <p class="w-100"><b>1.</b>Query an element and asign it to a variable</p>
+                <p class="w-100"><b>2.</b>Create a variable containing a TouchHandler object, pass the previously queried element then set vUmbral and hUmbral</p>
+                <p class="w-100"><b>3.</b>Asign functions to be triggered when the swipe occurs.</p>
+                <table class="code-view">
+                    <tr>
+                        <td>
+                            <span class="keyword">var</span> <span class="variable">touch</span> <span class="symbol">=</span> <span class="keyword">new </span><span class="element">TouchHandler</span>(element, <span class="primitive">0.1</span>, <span class="primitive">0.1</span>);
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="variable">touch</span>.<span class="element">horizontalAction</span> <span class="symbol">=</span> () <span class="symbol">=</span><span class="symbol">&gt;</span> {
+                                element.<span class="primitive">textContent </span><span class="symbol">=</span> <span class="string">`Horizontal swipe </span><span class="symbol">${</span><span class="primitive">touch.horizontal</span><span class="symbol">}</span><span class="string">`</span>;  
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="variable">touch</span>.<span class="element">verticalAction</span> <span class="symbol">=</span> () <span class="symbol">=</span><span class="symbol">&gt;</span> {
+                                element.<span class="primitive">textContent </span><span class="symbol">=</span> <span class="string">`Vertical swipe </span><span class="symbol">${</span><span class="primitive">touch.vertical</span><span class="symbol">}</span><span class="string">`</span>;  
+                            }
+                        </td>
+                    </tr>
+                </table>
+                <h3>Demo</h3>
+                <div id="touch-example-div"></div>
+            </div>
+        </div>
     </div>
     
     <script>
+
+        function supportsTouch() {
+            return (('ontouchstart' in window) ||
+            (navigator.maxTouchPoints > 0) ||
+            (navigator.msMaxTouchPoints > 0));
+        }
         var videoplayer = new VideoPlayer('video/Demo.mp4', true) /*second argument is true since we are passing an url*/
         videoplayer.render('video-space'); /*You must pass the id of the parent element*/
+
+        var elements = document.getElementsByClassName("c-element");
+
+        for(var i = 0 ; i < elements.length ; i++) {
+            let el = elements[i];
+            let el_content = el.querySelector(".element-content");
+            let button = el.querySelector("button");
+            button.addEventListener('click', ()=>{el.classList.toggle("hidden")});
+        }
+        
+        
+
+        var element = document.getElementById("touch-example-div");
+        
+        if(!supportsTouch()){
+            element.textContent = 'Your device does not support touch events';
+        }
+
+        var touch = new TouchHandler(element, 0.1, 0.1);
+        touch.horizontalAction = () => { element.textContent = `Horizontal swipe ${touch.horizontal}`; }
+        touch.verticalAction = () => { element.textContent = `Vertical swipe ${touch.vertical}`; }
+
+        var touch2 = new TouchHandler(videoplayer.root, 0.1, 0.1);
+        touch2.horizontalAction = () => {
+            if(touch2.horizontal <= 0) {
+                videoplayer.skipBackward();
+            }else{
+                videoplayer.skipForward();
+            }
+        }
+
+        touch2.verticalAction = () => {   
+            if(touch2.vertical <= 0) {
+                videoplayer.volume += 0.1;
+            }else{
+                videoplayer.volume -= 0.1;
+            }
+        }
+
     </script>
 </body>
 </html>

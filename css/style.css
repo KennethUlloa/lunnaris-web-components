@@ -14,35 +14,76 @@
 }
 
 body {
-    background-color: var(--base-color);
+    background-color: #ddd;
     font-size: 24px;
+    position: relative;
 }
 
 header {
+    display: flex;
+    box-sizing: border-box;
     color: white;
+    height: 100px;
     background-color: #2384c4;
-    text-align: center;
+    justify-content: center;
+    align-items: center;
     padding: 20px;
     font-size: 2.1rem;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0px 0px 5px 4px #00000088;
+    text-align: center;
 }
 
-#content {display: flex; justify-content: center;}
+#left-pane {background-color: white;}
 
-.element {
+#content {
+    display: flex; 
+    justify-content: center; 
+    flex-direction: column;
+    align-items: center;
+}
+
+.c-element {
     width: 80%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     border: 1px solid var(--contrast-color);
-    background-color: white;
+    background-color: #fff;
     margin: 10px;
     border-radius: 10px;
     overflow: hidden;
 }
+.c-element.hidden {width: fit-content; padding: 0 20px;}
+.c-element.hidden > .element-content {display: none;}
 
-.element > * {margin-bottom: 10px;}
+.c-element > * {margin-bottom: 10px;}
 
-.el-title {background-color: var(--base-soft-contrast); text-align: center;}
+.el-title {
+    text-align: center;
+    border-width:0 0 1px 0;
+    border-color: var(--contrast-color);
+    border-style: solid;
+    display: grid;
+    grid-template-columns: fit-content(10%) auto;
+}
+
+.el-title > button {
+    background-color: white;
+    color: #89929b;
+    font-weight: bold;
+    font-size: 28px;
+    width: 32px;
+    height: 32px;
+    padding: auto;
+    border-radius: 50%;
+    cursor: pointer;
+    margin: auto 5px;
+    border: 1px solid #89929b;
+}
+
+.el-title > button:hover {box-shadow: 0 0 5px 1px #89929b;}
 
 .element-content {
     display: flex;
@@ -86,9 +127,20 @@ table td {
     text-align: start;
 }
 
+.argument {
+    display: flex; 
+    flex-wrap: wrap; 
+    line-height: 32px;
+    align-items: center;
+}
+
+.argument > div {
+    margin-left: 5px;
+}
+
 .argument .arg-type {
     font-style: italic;
-    padding: 5px;
+    padding: 2px 5px;
     background-color: var(--base-soft-contrast);
     border-radius: 5px;
     border: 1px solid var(--contrast-color);
@@ -129,6 +181,9 @@ table td {
 
 .code-view .comment {color: #89929b;}
 
+.w-100 {width: 100%;}
+
+
 #test {
     display: flex;
     justify-content: center;
@@ -167,3 +222,16 @@ table td {
         transform: scale(1);
     }
 }
+
+#touch-example-div {
+    width: 100%;
+    height: 250px;
+    border: 1px solid #9b9b9b;
+    background-color: #eee;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
