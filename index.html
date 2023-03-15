@@ -5,10 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="video/lunnaris-video.css">
-    <script src="video/lunnaris-video.js"></script>
-    <script src="touch/touch.js"></script>
+    <link rel="stylesheet" href="lunnaris-condensed.css">
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
     <title>Lunnaris Web Components</title>
+    <style>
+
+        .code {white-space: pre-wrap;}
+
+        .code, .code * {
+            font-family: monospace;
+            font-size: 1rem;
+        }
+
+        .left {text-align: start;}
+    </style>
 </head>
 <body>
     <header>
@@ -66,44 +79,16 @@
     
                 <h3>How to use</h3>
                 <p class="p-1">In order to use this element, you need to add the following tags to your html head tag</p>
-                <table class="code-view">
-                    <tr>
-                        <td>
-                            &lt;<span class="primitive">link</span> <span class="symbol">rel</span>=<span class="string">"stylesheet"</span> <span class="symbol">href</span>=<span class="string">"https://kennethulloa.github.io/lunnaris-web-components/video/lunnaris-video.css"</span>&gt;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                                &lt;<span class="primitive">script</span> <span class="symbol">src</span>=<span class="string">"https://kennethulloa.github.io/lunnaris-web-components/video/lunnaris-video.js"</span>&gt;&lt;/<span class="primitive">script</span>&gt;
-                            </td>
-                    </tr> 
-                </table>
-                <p class="p-1">In your javascript code you can call VideoPlayer class passing an URL as parameter</p>
-                <table class="code-view">
-                    <tr>
-                        <td>
-                            <span class="keyword">var</span> <span class="variable">videoplayer</span> <span class="symbol">=</span> <span class="keyword">new</span> <span class="element">VideoPlayer</span>(<span class="string">'some url'</span>, <span class="primitive">true</span>) <span class="comment">/*second argument is true since we are passing an url*/</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="variable">videoplayer</span>.<span class="span method">render</span>(<span class="string">'parent element ID'</span>); <span class="comment">/*You must pass the id of the parent element*/</span>
-                        </td>
-                    </tr> 
-                </table>
+                <pre><code class="language-html code left">&lt;link rel="stylesheet" href="path-to/video/lunnaris-video.css"&gt;
+&lt;link rel="stylesheet" href="path-to/slider/slider.css"&gt;</code></pre>
+                <p class="p-1">In your javascript code you can call VideoPlayer class passing an URL as parameter (make sure you are calling from a module type script tag)</p>
+                <pre><code class="language-javascript code left">import { VideoPlayer } from 'path-to/video/lunnaris-video.js'
+/*second argument is true since we are passing an url*/ 
+var videoplayer = new VideoPlayer('some url', true)
+/*You must pass the id of the parent element*/
+videoplayer.render('parent element ID');</code></pre>
                 <p class="p-1">Or passing a video element reference (created or queried)</p>
-                <table class="code-view">
-                    <tr>
-                        <td>
-                            <span class="keyword">var</span> <span class="variable">videoplayer</span> <span class="symbol">=</span> <span class="keyword">new</span> <span class="element">VideoPlayer</span>(<span>element</span>, <span class="primitive">false</span>) <span class="comment">/*second argument is false (by default) since we are passing an HTMLElement*/</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="variable">videoplayer</span>.<span class="span method">render</span>(<span class="string">'parent element ID'</span>); <span class="comment">/*You must pass the id of the parent element*/</span>
-                        </td>
-                    </tr> 
-                </table>
+                
                 <h3>Demo</h3>
                 <p>Default</p>
                 <div style="width: min(600px, 100%);"> <video src="video/Demo.mp4" width="100%" controls></video></div>
@@ -168,52 +153,22 @@
                     </tr>
                 </table>
                 <h3>How to use</h3>
-                <p>In order to use this class you must add the next tag to your head tag</p> 
-                <table class="code-view">
-                    <tr>
-                        <td>
-                            &lt;<span class="primitive">script</span> <span class="symbol">src</span>=<span class="string">"https://kennethulloa.github.io/lunnaris-web-components/touch/touch.js"</span>&gt;&lt;/<span class="primitive">script</span>&gt;
-                        </td>
-                    </tr>
-                </table>
                 <p>In your javascript code</p>
                 <p class="w-100"><b>1.</b>Query an element and asign it to a variable</p>
                 <p class="w-100"><b>2.</b>Create a variable containing a TouchHandler object, pass the previously queried element then set vUmbral and hUmbral</p>
                 <p class="w-100"><b>3.</b>Asign functions to be triggered when the swipe occurs.</p>
-                <table class="code-view">
-                    <tr>
-                        <td>
-                            <span class="keyword">var</span> <span class="variable">touch</span> <span class="symbol">=</span> <span class="keyword">new </span><span class="element">TouchHandler</span>(element, <span class="primitive">0.1</span>, <span class="primitive">0.1</span>);
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="variable">touch</span>.<span class="element">horizontalAction</span> <span class="symbol">=</span> () <span class="symbol">=</span><span class="symbol">&gt;</span> {
-                                element.<span class="primitive">textContent </span><span class="symbol">=</span> <span class="string">`Horizontal swipe </span><span class="symbol">${</span><span class="primitive">touch.horizontal</span><span class="symbol">}</span><span class="string">`</span>;  
-                            }
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="variable">touch</span>.<span class="element">verticalAction</span> <span class="symbol">=</span> () <span class="symbol">=</span><span class="symbol">&gt;</span> {
-                                element.<span class="primitive">textContent </span><span class="symbol">=</span> <span class="string">`Vertical swipe </span><span class="symbol">${</span><span class="primitive">touch.vertical</span><span class="symbol">}</span><span class="string">`</span>;  
-                            }
-                        </td>
-                    </tr>
-                </table>
+                <pre><code class="language-javascript code left">import { TouchHandler } from 'path-to/touch/touch.js'
+var touch = new TouchHandler(element, 0.1, 0.1);
+touch.horizontalAction = () => { element.textContent = `Horizontal swipe ${touch.horizontal}`; }
+touch.verticalAction = () => { element.textContent = `Vertical swipe ${touch.vertical}`; }</code></pre>
                 <h3>Demo</h3>
                 <div id="touch-example-div"></div>
             </div>
         </div>
     </div>
     
-    <script>
-
-        function supportsTouch() {
-            return (('ontouchstart' in window) ||
-            (navigator.maxTouchPoints > 0) ||
-            (navigator.msMaxTouchPoints > 0));
-        }
+    <script type="module">
+        import {VideoPlayer, TouchHandler, supportsTouch} from './lunnaris-condensed.js'
         var videoplayer = new VideoPlayer('video/Demo.mp4', true) /*second argument is true since we are passing an url*/
         videoplayer.render('video-space'); /*You must pass the id of the parent element*/
 
@@ -225,9 +180,7 @@
             let button = el.querySelector("button");
             button.addEventListener('click', ()=>{el.classList.toggle("hidden")});
         }
-        
-        
-
+    
         var element = document.getElementById("touch-example-div");
         
         if(!supportsTouch()){
@@ -254,7 +207,6 @@
                 videoplayer.volume -= 0.1;
             }
         }
-
     </script>
 </body>
 </html>

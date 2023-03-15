@@ -1,5 +1,10 @@
+export function supportsTouch() {
+    return (('ontouchstart' in window) ||
+    (navigator.maxTouchPoints > 0) ||
+    (navigator.msMaxTouchPoints > 0));
+}
 
-class TouchHandler {
+export class TouchHandler {
     constructor(element, vUmbral = 0.2, hUmbral = 0.2) {
         this.start = [0,0];
         this.end = [0,0];

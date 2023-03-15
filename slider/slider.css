@@ -1,0 +1,66 @@
+:root {
+    --comp-accent: #3664A9;
+    --comp-background: #323A45;
+    --comp-a1: #4C5E79;
+    --comp-a2: #272F3A;
+    --comp-a3: #76A0DE;
+    --comp-a4: #3A485C;
+    --comp-text-color: #fff;
+    --comp-gradient: linear-gradient(to left, #5a9cff, rgb(173, 45, 212));
+}
+
+.slidebar {
+    --comp-slidebar-value: 0.5;
+    width: 100px;
+    height: 7px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.slidebar .bar {
+    width: 100%;
+    position: relative;
+    height: 3px;
+    display: flex;
+    background-color: rgba(206, 206, 206, 0.5);
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.slidebar .bar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: calc(100% - var(--comp-slidebar-value) * 100%);
+    /*background-color: var(--comp-accent);*/
+    background: var(--comp-gradient);
+}
+
+.slidebar .thumb {
+    --scale: 0;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    left: calc(100% * var(--comp-slidebar-value));
+    position: absolute;
+    transform: translateX(-50%) scale(var(--scale));
+    transition: transform .2s;
+    background-color: var(--comp-text-color);
+    outline: 5px solid rgba(255,255,255,0.6);
+}
+
+.slidebar:hover {
+    filter: drop-shadow(0 0 7px var(--comp-a3));
+}
+
+.slidebar:hover .bar {
+    height: 6px;
+}
+
+.slidebar:hover .thumb {
+    --scale: 1;
+}

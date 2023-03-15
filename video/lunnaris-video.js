@@ -1,133 +1,15 @@
-const playIcon = `play.svg`
-const pauseIcon = `pause.svg`
-const expandIcon = `expand.svg`
-const minimizeIcon = `minimize.svg`
-const volumeIcon = `volume.svg`
-const muteIcon = `mute.svg`
-const decimalFormatter = new Intl.NumberFormat(undefined, {
-    minimumIntegerDigits: 2
-});
+import { formatTime, createElement, createIconButton, loadIcons } from "../utils/utils.js"
+import { Slidebar } from "../slider/slider.js"
 
-function loadIcons(name) {
-    var _content = createElement('div');
-    fetch(`video/${name}`).
-    then(response => response.text())
-    .then(icon => {
-        console.log(icon);
-        _content.innerHTML = icon;
-    }).catch(reason => console.log('error'));
-    return _content;
-}
+const playIcon = `play.svg`;
+const pauseIcon = `pause.svg`;
+const expandIcon = `expand.svg`;
+const minimizeIcon = `minimize.svg`;
+const volumeIcon = `volume.svg`;
+const muteIcon = `mute.svg`;
 
-function createElement(tag, className=null, type=null) {
-    var element = document.createElement(tag);
-    if(className !== null){
-        element.className = className;
-    }
-    
-    if(type !== null){
-        element.type = type;
-    }
-    return element;
-}
 
-function createIconButton(icon, className=null){
-    var button = createElement('button', className);
-    fetch(`video/${icon}`).
-    then(response => response.text())
-    .then(icon => {
-        button.innerHTML = icon;
-    }).catch(error =>{
-        var img = createElement('img');
-        img.src = `video/${icon}`;
-        button.appendChild(img);
-    });
-    
-    return button;
-}
-
-function formatTime(time) {
-    const seconds = Math.floor(time % 60);
-    const minutes = Math.floor(time / 60) % 60;
-    const hours = Math.floor(time / 3600);
-
-    if (hours === 0){
-        return `${minutes}:${decimalFormatter.format(seconds)}`
-    }else{
-        return `${hours}:${decimalFormatter.format(minutes)}:${decimalFormatter.format(seconds)}`
-    }
-
-}
-
-class Slidebar{
-    constructor(value = 0.5, min = 0.0, max = 1.0){
-        this._value = value;
-        this._min = min;
-        this._max = max;
-        //Declaration
-        this._slidebar = createElement('div', 'slidebar');
-        this._bar = createElement('div', 'bar');
-        this._thumb = createElement('div', 'thumb');
-        this._onchange = () => {};
-        //Structure
-        this._slidebar.appendChild(this._bar);
-        this._slidebar.appendChild(this._thumb);
-        this.mouseDown = false;
-        //Events
-        // -- When the user clicks a point over the bar
-        this._bar.addEventListener('click', (e) => {
-            this.input(e);
-            this._onchange(); 
-        })
-    }
-
-    set value(val) {
-        const nVal = Math.min(Math.max(this._min, val), this._max);
-        this._value = nVal;
-        const percent = (this._value - this._min)/(this._max - this._min);
-        this._slidebar.style.setProperty('--comp-slidebar-value', percent);
-    }
-
-    get value(){
-        return this._value;
-    }
-
-    get range(){
-        return this._max - this.min;
-    }
-
-    get max(){
-        return this._max;
-    }
-
-    get min(){
-        return this._min;
-    }
-
-    get root() {
-        return this._slidebar;
-    }
-
-    input(e) {
-        const rect = this._bar.getBoundingClientRect();
-        const percent = Math.min(Math.max(0, e.x - rect.x), rect.width) / rect.width;
-        this.value = percent * (this._max - this._min);
-        
-    }
-
-    render(element) {
-        var _temp = document.getElementById(element);
-        _temp.appendChild(this._slidebar);
-    }
-
-    set onchange(funct){
-        if(funct !== undefined || funct !== null){
-            this._onchange = funct;
-        }
-    }
-}
-
-class VideoPlayer {
+export class VideoPlayer {
     constructor(video, fromUrl = false){
         //Declaration
         if(fromUrl){
@@ -202,15 +84,15 @@ class VideoPlayer {
 
         //events
         /* Play-pause logic */
-        this._play.addEventListener('click', ()=> {this.togglePlay();})
+        this._play.addEventListener('click', ()=> {this.togglePlay();});
         this.floatinPlay.addEventListener('click', () => {this.togglePlay();});
 
-        this._pause.addEventListener('click', ()=> {this.togglePlay();})
+        this._pause.addEventListener('click', ()=> {this.togglePlay();});
 
         /* Mute-unmute logic */
-        this._mute.addEventListener('click', ()=> {this.toggleMute();})
+        this._mute.addEventListener('click', ()=> {this.toggleMute();});
 
-        this._volume.addEventListener('click', ()=> {this.toggleMute();})
+        this._volume.addEventListener('click', ()=> {this.toggleMute();});
         
         /* Progress update */
         this._video.addEventListener('timeupdate', () => {this.updateVideoProgress();});
@@ -231,36 +113,36 @@ class VideoPlayer {
         
         this._video.addEventListener('keydown', (e)=> {
             console.log(e.key);
-        })
+        });
         /* Loading animation */
-        this._video.addEventListener('loadstart', ()=>{loading.classList.toggle('hidden', true);})
+        this._video.addEventListener('loadstart', ()=>{loading.classList.toggle('hidden', true);});
 
         this._video.addEventListener('waiting', ()=>{
             loading.classList.toggle('hidden', false);
         });
 
         /* Selected time */
-        this.timelineContainer.addEventListener('click', (e) => {this.handleSelectTime(e);})
+        this.timelineContainer.addEventListener('click', (e) => {this.handleSelectTime(e);});
         
         /* Fullscreen */
-        this._expand.addEventListener('click', () => {this.toggleFullscreen()})
-        this._minimize.addEventListener('click', () => {this.toggleFullscreen()})
+        this._expand.addEventListener('click', () => {this.toggleFullscreen()});
+        this._minimize.addEventListener('click', () => {this.toggleFullscreen()});
         var timeout;
         this._videoPlayer.addEventListener('mousemove', () =>{
             this.unhideControls();
             clearTimeout(timeout);
             timeout = setTimeout(()=>{this.hideControls()}, 1000);
-        })
+        });
 
         document.addEventListener('fullscreenchange', ()=>{
             this.checkFullScreen();
-        })
+        });
 
         /* Volume logic */
 
         this._volumebar.onchange = () => {
             this._video.volume = this._volumebar.value;
-        }
+        };
 
         /* Time preview */
         this.timelineContainer.addEventListener('mousemove', (e) => {this.timePreviewUpdate(e);});
@@ -295,7 +177,7 @@ class VideoPlayer {
                     this.toggleFullscreen();
                 }
             }
-        })
+        });
 
         this.skipValue = 0.1;
 
@@ -308,7 +190,6 @@ class VideoPlayer {
             }else if (type === 'element') {
                 this._topPanel.appendChild(content);
             }
-            
         }
     }
 
