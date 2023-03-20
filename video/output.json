@@ -1,0 +1,19 @@
+{
+    "files":
+    [{"file":"utils/utils.js","pipeline":[{"type":"min"}]},
+    {"file":"icons/lunnaris-icons-dev.js","pipeline":[{"type":"min"},{"type":"parse", "args":{
+        "back":"img/back.svg",
+        "expand":"img/expand.svg",
+        "minimize":"img/minimize.svg",
+        "mute":"img/mute.svg",
+        "play":"img/play.svg",
+        "pause":"img/pause.svg",
+        "volume":"img/volume.svg"
+    }}]},
+    {"file":"slider/slider.js","pipeline":[{"type":"min"}]},
+    {"file":"slider/slider.css","pipeline":[{"type":"min"}]},
+    {"file":"video/lunnaris-video.js","pipeline":[{"type":"min"}]},
+    {"file":"video/lunnaris-video.css","pipeline":[{"type":"min"}]}],
+    "css":"video/lunnaris-video-min.css",
+    "js":"video/lunnaris-video-min.js"
+}

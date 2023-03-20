@@ -1,25 +1,25 @@
-import { formatTime, createElement, createIconButton, loadIcons } from "../utils/utils.js"
-import { Slidebar } from "../slider/slider.js"
+import { formatTime, createElement } from "../utils/utils.js";
+import { Slidebar } from "../slider/slider.js";
+import { icons } from "../icons/lunnaris-icons.js";
 
-const playIcon = `play.svg`;
-const pauseIcon = `pause.svg`;
-const expandIcon = `expand.svg`;
-const minimizeIcon = `minimize.svg`;
-const volumeIcon = `volume.svg`;
-const muteIcon = `mute.svg`;
+function createIconButton(icon) {
+    let btn = createElement('button','button');
+    btn.innerHTML = icon;
+    return btn;
+};
 
 
 export class VideoPlayer {
     constructor(video, fromUrl = false){
-        //Declaration
+        /*Declaration*/
         if(fromUrl){
             this._video = document.createElement('video');
             this._video.src = video;
         }else {
             this._video = video;
         }
-        
-        this._videoPlayer = createElement('div', 'videoplayer'); //root
+
+        this._videoPlayer = createElement('div', 'videoplayer');
         this.controlsPane = createElement('div', 'controlsPane');
         this.timelineContainer = createElement('div', 'timelineContainer');
         var timeline = createElement('div', 'timeline');
@@ -30,15 +30,17 @@ export class VideoPlayer {
         var _buttons = createElement('div','buttons');
         var _panel1 = createElement('div', 'buttonPane');
         var _panel2 = createElement('div', 'buttonPane');
-        this._play = createIconButton(playIcon, 'button');
-        this._pause = createIconButton(pauseIcon, 'button');
-        this._expand = createIconButton(expandIcon, 'button');
-        this._minimize = createIconButton(minimizeIcon, 'button');
-        this._mute = createIconButton(muteIcon, 'button');
-        this._volume = createIconButton(volumeIcon, 'button');
+        this._play = createIconButton(icons.get('.ln-play'));
+        this._pause = createIconButton(icons.get('.ln-pause'));
+        this._expand = createIconButton(icons.get('.ln-expand'));
+        this._minimize = createIconButton(icons.get('.ln-minimize'));
+        this._mute = createIconButton(icons.get('.ln-mute'));
+        this._volume = createIconButton(icons.get('.ln-volume'));
         this._volumebar = new Slidebar(0.5, 0, 1);
         var loading = createElement('div', 'loadingItem');
-        this.floatinPlay = createIconButton(playIcon, 'floatingPlay');
+        this.floatinPlay = createIconButton(icons.get('.ln-play'));
+        this.floatinPlay.classList.toggle('floatingPlay',true);
+        this.floatinPlay.classList.toggle('button',false);
         loading.appendChild(createElement('div'));
         loading.appendChild(createElement('div'));
         loading.appendChild(createElement('div'));
@@ -46,27 +48,26 @@ export class VideoPlayer {
         this.timePreview = createElement('div', 'timePreview');
         this.isFocused = false;
 
-        //Structure
+        /*Structure*/
         this._videoPlayer.appendChild(this._video);
         this._videoPlayer.appendChild(this.controlsPane);
         this._videoPlayer.appendChild(loading);
         this._videoPlayer.appendChild(this.floatinPlay); //Floating button Play
         this._videoPlayer.appendChild(this._topPanel);
 
-        //controlsPane children
+        /*controlsPane children*/
         this.controlsPane.appendChild(this.timelineContainer);
-        //timelineContainer children
+        /*timelineContainer children*/
         this.timelineContainer.appendChild(timeline);
         this.timelineContainer.appendChild(thumb);
         this.timelineContainer.appendChild(this.timePreview);
-        //
         this.controlsPane.appendChild(_time);
-        //time children
+        /*time children*/
         _time.appendChild(this._currentTime);
         _time.appendChild(this._duration);
-        //controlsPane
+        /*controlsPane*/
         this.controlsPane.appendChild(_buttons);
-        //Buttons
+        /*Buttons*/
         _buttons.appendChild(_panel1);
         _panel1.appendChild(this._play);
         _panel1.appendChild(this._pause);
@@ -76,13 +77,11 @@ export class VideoPlayer {
         volPane.appendChild(this._volume);
         volPane.appendChild(this._volumebar.root);
         _panel1.appendChild(volPane);
-        //Buttons
+        /*Buttons*/
         _buttons.appendChild(_panel2);
         _panel2.appendChild(this._expand);
         _panel2.appendChild(this._minimize);
-
-
-        //events
+        /*events*/
         /* Play-pause logic */
         this._play.addEventListener('click', ()=> {this.togglePlay();});
         this.floatinPlay.addEventListener('click', () => {this.togglePlay();});
@@ -131,7 +130,7 @@ export class VideoPlayer {
         this._videoPlayer.addEventListener('mousemove', () =>{
             this.unhideControls();
             clearTimeout(timeout);
-            timeout = setTimeout(()=>{this.hideControls()}, 1000);
+            timeout = setTimeout(() => {this.hideControls()}, 1000);
         });
 
         document.addEventListener('fullscreenchange', ()=>{
@@ -147,7 +146,7 @@ export class VideoPlayer {
         /* Time preview */
         this.timelineContainer.addEventListener('mousemove', (e) => {this.timePreviewUpdate(e);});
 
-        //Init state
+        /*Init state*/
         this._pause.classList.toggle('hidden', true);
         this._mute.classList.toggle('hidden', true);
         this._minimize.classList.toggle('hidden', true);
@@ -229,9 +228,9 @@ export class VideoPlayer {
     }
 
     toggleFullscreen() {
-        if(document.fullscreenElement == null){//Not fullscreen currently
-            this._videoPlayer.requestFullscreen(); //Fullscreen requested
-        }else{ //Fullscreen currently
+        if(document.fullscreenElement == null){/*Not fullscreen currently*/
+            this._videoPlayer.requestFullscreen(); /*Fullscreen requested*/
+        }else{ /*Fullscreen currently*/
             document.exitFullscreen();
         }
     }

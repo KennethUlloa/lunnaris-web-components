@@ -1,0 +1,21 @@
+{
+    "files":
+    [{"file":"utils/utils.js","pipeline":[{"type":"min","args":{"mode":"dmf"}}]},
+    {"file":"icons/lunnaris-icons-dev.js","pipeline":[{"type":"min", "args":{"mode":"dmf"}},{"type":"parse", "args":{
+        "back":"img/back.svg",
+        "expand":"img/expand.svg",
+        "minimize":"img/minimize.svg",
+        "mute":"img/mute.svg",
+        "play":"img/play.svg",
+        "pause":"img/pause.svg",
+        "volume":"img/volume.svg"
+    }}]},
+    {"file":"slider/slider.js","pipeline":[{"type":"min","args":{"mode":"dmf"}}]},
+    {"file":"slider/slider.css","pipeline":[{"type":"min","args":{"mode":"dmf"}}]},
+    {"file":"video/lunnaris-video.js","pipeline":[{"type":"min","args":{"mode":"dmf"}}]},
+    {"file":"video/lunnaris-video.css","pipeline":[{"type":"min","args":{"mode":"dmf"}}]},
+    {"file":"touch/touch.js","pipeline":[{"type":"min","args":{"mode":"dmf"}}]}
+    ],
+    "css":"lunnaris-min-dmf.css",
+    "js":"lunnaris-min-dmf.js"
+}

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="lunnaris-condensed.css">
+    <link rel="stylesheet" href="lunnaris-min.css">
     <link rel="stylesheet"
       href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
@@ -168,7 +168,7 @@ touch.verticalAction = () => { element.textContent = `Vertical swipe ${touch.ver
     </div>
     
     <script type="module">
-        import {VideoPlayer, TouchHandler, supportsTouch} from './lunnaris-condensed.js'
+        import {VideoPlayer, TouchHandler, supportsTouch} from './lunnaris-min.js'
         var videoplayer = new VideoPlayer('video/Demo.mp4', true) /*second argument is true since we are passing an url*/
         videoplayer.render('video-space'); /*You must pass the id of the parent element*/
 

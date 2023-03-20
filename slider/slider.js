@@ -5,17 +5,15 @@ export class Slidebar{
         this._value = value;
         this._min = min;
         this._max = max;
-        //Declaration
         this._slidebar = createElement('div', 'slidebar');
         this._bar = createElement('div', 'bar');
         this._thumb = createElement('div', 'thumb');
         this._onchange = () => {};
-        //Structure
         this._slidebar.appendChild(this._bar);
         this._slidebar.appendChild(this._thumb);
         this.mouseDown = false;
-        //Events
-        // -- When the user clicks a point over the bar
+        /*Events
+        -- When the user clicks a point over the bar*/
         this._bar.addEventListener('click', (e) => {
             this.input(e);
             this._onchange(); 

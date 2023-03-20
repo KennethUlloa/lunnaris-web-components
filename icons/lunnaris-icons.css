@@ -1,0 +1,28 @@
+.ln-icon {
+    display: inline-block;
+    width: fit-content;
+    height: fit-content;
+    border: 1px solid red;
+    font-size: 16px;
+    line-height: 16px;
+    box-sizing: border-box;
+}
+
+.ln-icon svg {
+    width: 1em;
+    height: 1em;
+}
+
+.ln-icon svg g {
+    color: inherit;
+    fill: currentColor;
+    stroke: currentColor;
+}
+
+.ln-icon.ln-sm {font-size: 22px;}
+.ln-icon.ln-smx {font-size: 32px;}
+.ln-icon.ln-md {font-size: 42px;}
+.ln-icon.ln-mdx {font-size: 52px;}
+.ln-icon.ln-lg {font-size: 62px;}
+.ln-icon.ln-lgx {font-size: 72px;}
+
