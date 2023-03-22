@@ -2,7 +2,7 @@
 Library for components
 
 ## Glosay
-modular: js file contained in a script tag that includes type="module" attribute.
+modular: js file contained in a script tag that includes type="module" attribute.\
 non-modular: common js file in a simple script tag.
 
 ## Usage
