@@ -1,8 +1,8 @@
-export const decimalFormatter = new Intl.NumberFormat(undefined, {
+ const decimalFormatter = new Intl.NumberFormat(undefined, {
     minimumIntegerDigits: 2
 });
 
-export function createElement(tag, className=null, type=null) {
+ function createElement(tag, className=null, type=null) {
     var element = document.createElement(tag);
     if(className !== null){
         element.className = className;
@@ -13,7 +13,7 @@ export function createElement(tag, className=null, type=null) {
     }
     return element;
 }
-export function formatTime(time) {
+ function formatTime(time) {
     const seconds = Math.floor(time % 60);
     const minutes = Math.floor(time / 60) % 60;
     const hours = Math.floor(time / 3600);
@@ -31,7 +31,7 @@ const i_pause = `<svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="
 const i_play = `<svg viewBox="0 0 13.229167 13.229167" version="1.1" id="svg5" inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)" sodipodi:docname="play.svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"><defs id="defs2"/><g id="layer1"><path style="stroke-width:1.5875;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" id="path1012" d="m 6.8442031,5.8358231 -9.578798,-10e-8 4.789399,-8.2954823 z" transform="rotate(90,1.8714628,6.431242)"/></g></svg>`;
 const i_volume = `<svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet"><g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none"><path d="M2846 4943 c-10 -3 -400 -310 -867 -684 l-849 -678 -442 -3 c-437 -3 -444 -3 -489 -26 -74 -36 -125 -87 -161 -160 l-33 -67 0 -765 0 -765 33 -67 c36 -73 87 -124 161 -160 45 -23 52 -23 489 -26 l442 -3 848 -678 c467 -373 859 -681 873 -684 75 -20 156 12 194 77 l25 43 0 2263 0 2263 -25 43 c-38 65 -121 97 -199 77z"/><path d="M4249 4290 c-71 -21 -119 -87 -119 -165 0 -60 7 -72 104 -180 154 -171 247 -307 337 -491 233 -478 270 -1026 103 -1533 -93 -282 -227 -509 -440 -746 -97 -108 -104 -120 -104 -180 0 -115 101 -194 212 -165 34 9 60 29 120 90 291 299 512 714 603 1135 165 764 -54 1558 -591 2134 -91 98 -149 124 -225 101z"/><path d="M3770 3807 c-77 -25 -120 -83 -120 -160 0 -62 16 -91 100 -183 225 -248 342 -556 342 -904 0 -345 -115 -652 -338 -899 -89 -100 -104 -126 -104 -186 0 -81 48 -144 125 -164 48 -12 102 -2 143 27 42 31 168 180 235 280 65 95 151 268 190 377 72 203 107 483 88 698 -34 382 -165 695 -410 982 -107 126 -170 159 -251 132z"/></g></svg>`;
 
-export const icons = new Map();
+ const icons = new Map();
 icons.set('.ln-play',i_play);
 icons.set('.ln-pause',i_pause);
 icons.set('.ln-expand',i_expand);
@@ -41,7 +41,7 @@ icons.set('.ln-volume',i_volume);
 icons.set('.ln-back',i_back);
 
 
-export class Slidebar{
+ class Slidebar{
     constructor(value = 0.5, min = 0.0, max = 1.0){
         this._value = value;
         this._min = min;
@@ -116,7 +116,7 @@ function createIconButton(icon) {
 };
 
 
-export class VideoPlayer {
+ class VideoPlayer {
     constructor(video, fromUrl = false){
         /*Declaration*/
         if(fromUrl){
@@ -440,13 +440,13 @@ export class VideoPlayer {
     get videoElement() {
         return this._video;
     }
-}export function supportsTouch() {
+} function supportsTouch() {
     return (('ontouchstart' in window) ||
     (navigator.maxTouchPoints > 0) ||
     (navigator.msMaxTouchPoints > 0));
 }
 
-export class TouchHandler {
+ class TouchHandler {
     constructor(element, vUmbral = 0.2, hUmbral = 0.2) {
         this.start = [0,0];
         this.end = [0,0];

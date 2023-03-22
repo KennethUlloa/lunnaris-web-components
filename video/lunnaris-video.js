@@ -321,8 +321,8 @@ export class VideoPlayer {
         return this._video.volume;
     }
 
-    render(element) {
-        var _temp = document.getElementById(element);
+    render(selector) {
+        var _temp = document.querySelector(selector);
         _temp.appendChild(this._videoPlayer);
     }
 

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--link rel="stylesheet" href="video/lunnaris-video.css">
+    <link rel="stylesheet" href="slider/slider.css">
+    <link rel="stylesheet" href="icons/lunnaris-icons.css"-->
+    <link rel="stylesheet" href="lunnaris-min.css">
+    <!--script src="lunnaris-min.js"></script-->
+</head>
+<body>
+    <div id="root"></div>
+    <div class="something"></div>
+    <div style="display: flex;">
+        <button style="padding: 3px; display: flex;"><span class="ln-icon ln-play" style="color: blue">a</span></button>
+    <span>Play</span>
+    </div>
+    <span class="ln-icon ln-play ln-sm"></span>
+    <span>Play</span>
+    <span class="ln-icon ln-play ln-smx"></span>
+    <span>Play</span>
+    <span class="ln-icon ln-play ln-md"></span>
+    <span>Play</span>
+    <span class="ln-icon ln-play ln-mdx"></span>
+    <span>Play</span>
+    <span class="ln-icon ln-pause ln-lg" style="color: red; font-size: 5px;"></span>
+    <span>Play</span>
+    <span class="ln-icon ln-play ln-lgx"></span>
+    <span class="ln-icon ln-minimize ln-lgx"></span>
+    <script src="lunnaris-min-dmf.js"></script>
+    <div data-target="target"></div> 
+    <!--script type="module" -->
+    <script>
+        //import {VideoPlayer} from './lunnaris-min.js'
+        var video = new VideoPlayer('video/Demo.mp4',true);
+        video.render('[data-target="target"]');
+    </script>
+    <script src="icons/lunnaris-icons-autoload.js" type="module"></script>
+</body>
+</html>

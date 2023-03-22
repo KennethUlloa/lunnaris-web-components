@@ -11,11 +11,11 @@
         "volume":"img/volume.svg"
     }}]},
     {"file":"slider/slider.js","pipeline":[{"type":"min","args":{"mode":"dmf"}}]},
-    {"file":"slider/slider.css","pipeline":[{"type":"min","args":{"mode":"dmf"}}]},
+    {"file":"slider/slider.css","pipeline":[{"type":"min"}]},
     {"file":"video/lunnaris-video.js","pipeline":[{"type":"min","args":{"mode":"dmf"}}]},
-    {"file":"video/lunnaris-video.css","pipeline":[{"type":"min","args":{"mode":"dmf"}}]},
+    {"file":"video/lunnaris-video.css","pipeline":[{"type":"min"}]},
     {"file":"touch/touch.js","pipeline":[{"type":"min","args":{"mode":"dmf"}}]}
     ],
-    "css":"lunnaris-min-dmf.css",
+    "css":"lunnaris-min.css",
     "js":"lunnaris-min-dmf.js"
 }
